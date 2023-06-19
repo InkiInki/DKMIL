@@ -25,7 +25,7 @@ H_s = 64
 D_s = 128
 lambda_l1 = 1e-5
 epoch = 50
-lr = 0.0001
+lr = 0.00005
 weight_decay = 0.00005
 # Elephant: H = 16, D = 8
 # print((0.8 + 0.675 + 0.725 + 0.625 + 0.6) / 5)
