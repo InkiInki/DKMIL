@@ -1,3 +1,4 @@
+import numpy as np
 """For knowledge"""
 n_bag_center = 3
 n_bag_density = 3
