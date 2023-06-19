@@ -280,20 +280,3 @@ class DataDrivenBagSpace:
                 ins_space = torch.vstack([ins_space, bag])
 
         return ins_space.numpy(), None
-
-
-def main():
-    # data_path = "D:/OneDrive/Files/Code/Data/MIL/Drug/musk1.mat"
-    import torch
-    from args.args_shanghai_and_ucf import parser
-    from dataset.VAD.shanghai_and_ucf import Dataset
-    args = parser.parse_args()
-    crop = 4
-    loader_kwargs = {'num_workers': 1, 'pin_memory': True} if torch.cuda.is_available() else {}
-    tr_data = Dataset(args, test_mode=False, crop=crop)
-    knowledge = DataDrivenBagSpace(tr_data)
-    knowledge.fit()
-
-
-if __name__ == '__main__':
-    main()
