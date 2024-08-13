@@ -4,7 +4,7 @@ This repository holds the Pytorch implementation for the method described in the
 Yu-Xuan Zhang, Zhengchun Zhou, Xingxing He, Avik Ranjan Adhikary, Bapi Dutta.
 IEEE Transactions on Neural Networks and Learning Systems (2024)
 
-![Pipeline](DKMIL.png "")
+![](DKMIL.png)
 
 
 # Data Preparation
