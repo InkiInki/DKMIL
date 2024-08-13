@@ -1,3 +1,12 @@
+# coding: utf-8
+"""
+作者: 因吉
+邮箱: inki.yinji@qq.com
+创建: 2021 0805
+修改: 2021 0806
+"""
+
+
 import numpy as np
 from scipy.io import loadmat
 from numba import jit
@@ -15,7 +24,7 @@ def get_iter(tr, tr_lab, te, te_lab):
     yield tr, tr_lab, te, te_lab
 
 
-def get_k_cv_idx(num_x, k=10, seed=None):
+def get_k_cv_idx(num_x, k=5, seed=None):
     """
     获取k次交叉验证的索引
     :param num_x:       数据集的大小
@@ -25,7 +34,7 @@ def get_k_cv_idx(num_x, k=10, seed=None):
     """
     # 随机初始化索引
     if seed is not None:
-        np.random.seed(666)
+        np.random.seed(seed)
     rand_idx = np.random.permutation(num_x)
     # 每一折的大小
     fold = int(np.floor(num_x / k))
@@ -109,6 +118,10 @@ def get_bag_label(data_loader):
     return bags, labels
 
 
+def get_iter(tr, tr_lab, te, te_lab):
+    yield tr, tr_lab, te, te_lab
+
+
 def print_acc_and_recall(acc_list, f_acc_list, recall_list, f_recall_list, f_new_acc_list=None):
     print("Acc: %.3lf, %.3lf" % (np.average(acc_list), np.std(acc_list, ddof=1)))
     print("Declined Acc: %.3lf, %.3lf" % (np.average(acc_list) - np.average(f_acc_list), np.std(f_acc_list, ddof=1)))
@@ -117,6 +130,13 @@ def print_acc_and_recall(acc_list, f_acc_list, recall_list, f_recall_list, f_new
     np.average(recall_list) - np.average(f_recall_list), np.std(f_recall_list, ddof=1)))
     if f_new_acc_list is not None:
         print("Bias: %.3lf, %.3lf" % (np.average(f_new_acc_list), np.std(f_new_acc_list, ddof=1)))
+
+
+def write2file(file_path, context, mode="a+"):
+    with open(file_path, mode) as log_txt:
+        print(context, end="")
+        log_txt.write(context)
+    log_txt.close()
 
 
 if __name__ == '__main__':
